@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix website </title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#000;
+    color:white;
+}
+
+/* Hero Section */
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.75),
+    rgba(0,0,0,0.75)),
+    url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f562aaf4-5dbb-4603-a32b-6ef6c2230136/dh0w8qv-9d8ee6b2-b41a-4681-ab9b-8a227560dc75.jpg/v1/fill/w_1192,h_670,q_70,strp/the_netflix_login_background__canada__2024___by_logofeveryt_dh0w8qv-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6Ii9mL2Y1NjJhYWY0LTVkYmItNDYwMy1hMzJiLTZlZjZjMjIzMDEzNi9kaDB3OHF2LTlkOGVlNmIyLWI0MWEtNDY4MS1hYjliLThhMjI3NTYwZGM3NS5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.FScrpAAFnKqBVKwe2syeiOww6mfH6avq-DRHZ_uFVNw");
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
+
+/* Navbar */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 80px;
+}
+
+.logo{
+    color:#e50914;
+    font-size:48px;
+    font-weight:bold;
+}
+
+.nav-right{
+    display:flex;
+    gap:15px;
+}
+
+select{
+    background:transparent;
+    color:white;
+    border:1px solid #888;
+    padding:10px;
+    border-radius:5px;
+}
+
+.signin{
+    background:#e50914;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* Content */
+.content{
+    text-align:center;
+    margin-top:140px;
+}
+
+.content h1{
+    font-size:70px;
+    font-weight:bold;
+}
+
+.content h3{
+    margin-top:20px;
+    font-size:28px;
+}
+
+.content p{
+    margin-top:20px;
+    font-size:20px;
+}
+
+.email-box{
+    margin-top:30px;
+}
+
+.email-box input{
+    width:400px;
+    padding:18px;
+    font-size:18px;
+    background:rgba(0,0,0,0.6);
+    border:1px solid gray;
+    color:white;
+    border-radius:4px;
+}
+
+.email-box button{
+    padding:18px 35px;
+    background:#e50914;
+    color:white;
+    border:none;
+    font-size:20px;
+    border-radius:4px;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+/* Trending */
+.trending{
+    padding:50px 80px;
+    background:black;
+}
+
+.trending h2{
+    margin-bottom:30px;
+    font-size:36px;
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+}
+
+.card{
+    position:relative;
+    cursor:pointer;
+    transition:transform 0.3s ease;
+}
+
+.card img{
+    width:220px;
+    height:300px;
+    border-radius:10px;
+}
+
+.number{
+    position:absolute;
+    left:-25px;
+    bottom:-10px;
+    font-size:90px;
+    font-weight:bold;
+    color:black;
+    -webkit-text-stroke:2px white;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+/* Movie Info Modal */
+.movie-info-container{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    z-index:1000;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.movie-info-container.active{
+    display:flex;
+}
+
+.movie-details{
+    background:#1f1f1f;
+    border-radius:10px;
+    padding:30px;
+    max-width:600px;
+    width:100%;
+    position:relative;
+    color:white;
+}
+
+.close-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#e50914;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.close-btn:hover{
+    background:#c40812;
+}
+
+.movie-details img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.movie-details h2{
+    font-size:32px;
+    margin-bottom:15px;
+    color:#e50914;
+}
+
+.movie-details p{
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:15px;
+    color:#ccc;
+}
+
+.movie-rating{
+    font-size:18px;
+    margin-bottom:20px;
+    color:#ffd700;
+}
+
+.watch-btn{
+    background:#e50914;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    font-size:18px;
+    border-radius:5px;
+    cursor:pointer;
+    width:100%;
+    transition:background 0.3s ease;
+}
+
+.watch-btn:hover{
+    background:#c40812;
+}
+
+/* Footer */
+.footer{
+    background:black;
+    text-align:center;
+    padding:30px 20px;
+    border-top:1px solid #333;
+    color:#999;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+    <div class="navbar">
+        <div class="logo">NETFLIX</div>
+
+        <div class="nav-right">
+            <select>
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Marathi</option>
+            </select>
+
+            <button class="signin">Sign In</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Unlimited movies, shows,<br>and more</h1>
+
+        <h3>Starts at ₹149. Cancel at any time.</h3>
+
+        <p>Ready to watch? Enter your email to create or restart your membership.</p>
+
+        <div class="email-box">
+            <input type="email" placeholder="Email address">
+            <button>Get Started ></button>
+        </div>
+    </div>
+
+</section>
+
+<section class="trending">
+    <h2>Trending Now</h2>
+
+    <div class="cards">
+
+        <div class="card" onclick="showMovieInfo(0)">
+            <span class="number">1</span>
+            <img src="file:///C:/Users/golma/Downloads/images.webp" alt="Dhurandhar">
+        </div>
+
+        <div class="card" onclick="showMovieInfo(1)">
+            <span class="number">2</span>
+            <img src="file:///C:/Users/golma/Downloads/images%20(1).webp" alt="Dragon">
+        </div>
+
+        <div class="card" onclick="showMovieInfo(2)">
+            <span class="number">3</span>
+            <img src="file:///C:/Users/golma/Downloads/download.jpg" alt="Border 2">
+        </div>
+
+        <div class="card" onclick="showMovieInfo(3)">
+            <span class="number">4</span>
+            <img src="file:///C:/Users/golma/Downloads/images%20(2).webp" alt="The Witcher">
+        </div>
+
+        <div class="card" onclick="showMovieInfo(4)">
+            <span class="number">5</span>
+            <img src="file:///C:/Users/golma/Downloads/download%20(1).jpg" alt="Dark">
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <p>&copy; designed by deepankar </p>
+</footer>
+
